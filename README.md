@@ -83,7 +83,7 @@ Or the PHP file may consist of multiple assigned arrays, e.g.:
 $first = [
     'key' => 'string',
     'associative_array' => [
-        'foo' => 'bart',
+        'foo' => 'bar',
         'hello' => 'world'
     ]
 ];
@@ -99,20 +99,18 @@ $second = [
 This will return a JS object with the variable names as the first level keys:
 ```js
 {
-  first:
-    {
-      key: 'string',
-      associative_array: {
-        foo: 'bart', 
-        hello: 'world'
-      }
-    },
-  second:
-    {
-      index_array: ['first', 'second'],
-      also_supports: null,
-      and_numeric: 42
+  first: {
+    key: 'string',
+    associative_array: {
+      foo: 'bar', 
+      hello: 'world'
     }
+  },
+  second: {
+    index_array: ['first', 'second'],
+    also_supports: null,
+    and_numeric: 42
+  }
 }
 ```
 You can then of course also use destructuring to assign the results to two variables:
