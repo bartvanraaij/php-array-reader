@@ -14,7 +14,7 @@
     "php",
     "array"
   ],
-  "author": "Bart van Raaij <bart@linku.nl>",
+  "author": "Bart van Raaij <info@bartvanraaij.nl>",
   "license": "MIT",
   "homepage": "https://github.com/bartvanraaij/php-array-reader#readme",
   "dependencies": {
