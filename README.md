@@ -120,6 +120,6 @@ You can then of course also use destructuring to assign the results to two varia
 const phpArrayReader = require('php-array-reader');
 
 const phpFile = './file.php';
-const { first, second} = phpArrayReader.fromFile(phpFile);
+const { first, second } = phpArrayReader.fromFile(phpFile);
 ```
 
