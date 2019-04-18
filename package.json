@@ -1,6 +1,6 @@
 {
   "name": "php-array-reader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Reads PHP arrays from a .php file or string into JS",
   "main": "index.js",
   "scripts": {
