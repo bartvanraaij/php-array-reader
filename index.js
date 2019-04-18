@@ -18,7 +18,8 @@ const readPhpArray = {
       ast: { withPositions: false },
     });
 
-    if(phpString.substr(0,4)!=='<?php') {
+    phpString = phpString.trim();
+    if(phpString.substr(0,5)!=='<?php') {
       phpString = '<?php \n'+phpString;
     }
 
