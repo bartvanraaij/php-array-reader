@@ -4,7 +4,7 @@
   "description": "Reads PHP arrays from a .php file or string into JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,9 @@
   "homepage": "https://github.com/bartvanraaij/php-array-reader#readme",
   "dependencies": {
     "php-parser": "^3.0.0-prerelease.8"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "mock-fs": "^4.8.0"
   }
 }

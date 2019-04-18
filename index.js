@@ -76,7 +76,7 @@ const readPhpArray = {
       case 'string':
         return expr.value;
       case 'number':
-        return parseInt(expr.value, 10);
+        return parseFloat(expr.value);
       case 'boolean':
         return expr.value;
       case 'identifier':
@@ -97,7 +97,7 @@ const readPhpArray = {
       case 'string':
         return expr.value;
       case 'number':
-        return parseInt(expr.value, 10);
+        return parseFloat(expr.value);
       case 'boolean':
         return expr.value ? 1 : 0;
       default:
