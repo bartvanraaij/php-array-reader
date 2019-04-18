@@ -1,5 +1,7 @@
 # php-array-reader
 
+[![Build Status](https://travis-ci.org/bartvanraaij/php-array-reader.svg?branch=master)](https://travis-ci.org/bartvanraaij/php-array-reader)
+
 This small JS utility reads PHP files and strings containing arrays and returns a JavaScript object. 
 
 It uses [glayzzle/php-parser](https://github.com/glayzzle/php-parser) to parse PHP into AST and uses that 
