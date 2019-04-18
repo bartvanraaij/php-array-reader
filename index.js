@@ -51,14 +51,16 @@ const readPhpArray = {
    * @return {*}           A JavaScript object or value.
    */
   parseValue: function(expr) {
-    if(expr===null) return null;
+    if(expr===null) return;
     switch(expr.kind) {
       case 'array':
         if (expr.items.length === 0) {
           return [];
         }
-        const isKeyed = expr.items.every((item) => item !== null && typeof item.key!=='undefined' && item.key !== null);
-        let items = expr.items.map(readPhpArray.parseValue);
+        const isKeyed = expr.items.every(item =>
+          item === null || item.value === undefined || (item.key!==undefined && item.key !== null)
+        );
+        let items = expr.items.map(readPhpArray.parseValue).filter(itm => itm !== undefined);
         if (isKeyed) {
           items = items.reduce((acc, val) => Object.assign({}, acc, val), {})
         }
@@ -76,8 +78,11 @@ const readPhpArray = {
         return parseInt(expr.value, 10);
       case 'boolean':
         return expr.value;
-      default:
-        return null;
+      case 'identifier':
+        if(expr.name.name==='null') {
+          return null;
+        }
+        break;
     }
   },
 
