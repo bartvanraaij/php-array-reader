@@ -6,12 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git@github.com:bartvanraaij/php-array-reader.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bartvanraaij/php-array-reader"
+  },
   "keywords": [
     "php",
     "array"
   ],
   "author": "Bart van Raaij <bart@linku.nl>",
   "license": "MIT",
-  "homepage": "https://github.com/bartvanraaij/php-array-reader#readme"
+  "homepage": "https://github.com/bartvanraaij/php-array-reader#readme",
+  "dependencies": {
+    "php-parser": "^3.0.0-prerelease.8"
+  }
 }
