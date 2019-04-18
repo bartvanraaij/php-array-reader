@@ -96,8 +96,8 @@ $second = [
 ];
 ```
 
-This will return a JS object with the variable names as the first level keys, e.g.:
-```
+This will return a JS object with the variable names as the first level keys:
+```js
 {
   first:
     {
