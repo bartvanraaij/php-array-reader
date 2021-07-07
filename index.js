@@ -79,6 +79,9 @@ const readPhpArray = {
         return parseFloat(expr.value);
       case 'boolean':
         return expr.value;
+      case 'nullkeyword':
+        return null;
+        break;
       case 'identifier':
         if(expr.name.name==='null') {
           return null;
