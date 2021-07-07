@@ -1,6 +1,6 @@
 # php-array-reader
 
-[![Build Status](https://travis-ci.org/bartvanraaij/php-array-reader.svg?branch=master)](https://travis-ci.org/bartvanraaij/php-array-reader)
+[![Node.js CI](https://github.com/bartvanraaij/php-array-reader/actions/workflows/node.js.yml/badge.svg)](https://github.com/bartvanraaij/php-array-reader/actions/workflows/node.js.yml)
 
 This small JS utility reads PHP files and strings containing arrays and returns a JavaScript object. 
 
