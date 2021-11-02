@@ -6,13 +6,18 @@
   "scripts": {
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bartvanraaij/php-array-reader"
-  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "git://github.com/bartvanraaij/php-array-reader.git",
   "keywords": [
     "php",
-    "array"
+    "array",
+    "json",
+    "js",
+    "reader",
+    "parser",
+    "ast"
   ],
   "author": "Bart van Raaij <info@bartvanraaij.nl>",
   "license": "MIT",
@@ -22,6 +27,8 @@
   },
   "devDependencies": {
     "jest": "^27.0.6",
-    "mock-fs": "^5.0.0"
+    "mock-fs": "^5.0.0",
+    "npm-package-json-lint": "^5.4.1",
+    "npm-package-json-lint-config-default": "^3.0.0"
   }
 }
