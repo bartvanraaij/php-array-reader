@@ -18,9 +18,8 @@ npm install php-array-reader --save
 
 ## Usage
 
-### With a PHP string
 ```js
-const phpArrayReader = require('php-array-reader');
+import { fromString } from 'php-array-reader';
 
 const phpString = `[
   'key' => 'string',
@@ -35,7 +34,7 @@ const phpString = `[
   'also_supports' => null,
   'and_numeric' => 42
 ]`;
-const data = phpArrayReader.fromString(phpString); 
+const data = fromString(phpString); 
 ```
 `data` will be this JS object:
 ```js
@@ -53,20 +52,21 @@ const data = phpArrayReader.fromString(phpString);
 
 ### With a PHP file
 
-Use `fs` or another file reading library to read the file, and pass that info into `fromString`, e.g.:
+Use [`fs.readFileSync`](https://nodejs.org/api/fs.html#fsreadfilesyncpath-options) or another file reading library to read the file, and pass 
+that string into `fromString`, e.g.:
 ```js
-const phpArrayReader = require('php-array-reader');
+import { fromString } from 'php-array-reader';
+import { readFileSync } from 'node:fs';
 
 const phpFile = './file.php';
-const phpString = fs.readFileSync(phpFile, 'utf8');
+const phpString = readFileSync(phpFile);
 
-const data = phpArrayReader.fromFile(phpFile);
+const data = fromString(phpFile);
 ```
 
 > [!NOTE]
 > Version `1.x` of this library included a [`fromFile` method](https://github.com/bartvanraaij/php-array-reader/blob/a3f48acdef4eace2106ac40fa3c4593ab196dc1c/index.js#L6) 
-> that allowed you to read a file directly. This has been removed in version `2.x` forward.
-
+> that allowed you to read a file directly. This has been removed in version `2.x` forward, because that method was a scope creep.
 
 The PHP file can either return a single array, e.g.:
 ```php
