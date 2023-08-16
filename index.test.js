@@ -1,5 +1,3 @@
-
-const mockFs = require('mock-fs');
 const phpArrayReader = require('./index');
 
 const indexStr = `[
@@ -32,23 +30,6 @@ const multipleStr = `
   $second = ['hello', 'world'];
 `;
 
-mockFs({
-  'indexed.php': `<?php \n return ${indexStr}`,
-  'associative.php': `<?php \n return ${associativeStr}`,
-  'value-types.php': `<?php \n return ${valueTypesStr}`,
-  'multidimensional.php': `<?php \n return ${multidimensionalStr}`,
-  'multiple.php': `<?php \n  ${multipleStr}`
-});
-
-
-
-afterAll(() => {
-  mockFs.restore();
-
-});
-
-// jest.mock('fs');
-
 test('indexed array from string', () => {
 
   const data = phpArrayReader.fromString(indexStr);
@@ -57,16 +38,6 @@ test('indexed array from string', () => {
   ])
 
 });
-
-test('indexed array from file', () => {
-
-  const data = phpArrayReader.fromFile('indexed.php');
-  expect(data).toEqual([
-    'foo', 'bar', 'baz'
-  ])
-
-});
-
 
 test('associative array from string', () => {
 
@@ -79,35 +50,9 @@ test('associative array from string', () => {
 
 });
 
-
-test('associative array from file', () => {
-
-  const data = phpArrayReader.fromFile('associative.php');
-
-  expect(data).toEqual({
-    foo: 'bar',
-    hello: 'world'
-  });
-
-});
-
 test('all value types match (arrays strings numbers decimals nulls) from string', () => {
 
   const data = phpArrayReader.fromString(valueTypesStr);
-
-  expect(data).toEqual({
-    arrayvalue: ['hello','world'],
-    stringvalue: 'foo',
-    numbervalue: 42,
-    decimalvalue: 4.2,
-    nullvalue: null
-  });
-
-});
-
-test('all value types match (arrays strings numbers decimals nulls) from file', () => {
-
-  const data = phpArrayReader.fromFile('value-types.php');
 
   expect(data).toEqual({
     arrayvalue: ['hello','world'],
@@ -134,25 +79,9 @@ test('multidimensional array from string', () => {
 
 });
 
-test('multidimensional array from file', () => {
-
-  const data = phpArrayReader.fromFile('multidimensional.php');
-
-  expect(data).toEqual({
-    first: {
-      second: {
-        third: 1
-      },
-      fourth: 4
-    }
-  });
-
-});
-
-
 test('multiple arrays from file', () => {
 
-  const data = phpArrayReader.fromFile('multiple.php');
+  const data = phpArrayReader.fromString(multipleStr);
 
   expect(data).toEqual({
     first: ['foo','bar'],

@@ -2,7 +2,7 @@
 
 [![Node.js CI](https://github.com/bartvanraaij/php-array-reader/actions/workflows/node.js.yml/badge.svg)](https://github.com/bartvanraaij/php-array-reader/actions/workflows/node.js.yml)
 
-This small JS utility reads PHP files and strings containing arrays and returns a JavaScript object. 
+This small JS utility reads PHP strings containing arrays and returns a JavaScript object. 
 
 It uses [glayzzle/php-parser](https://github.com/glayzzle/php-parser) to parse PHP into AST and uses that 
 info to extract arrays.  
@@ -52,12 +52,21 @@ const data = phpArrayReader.fromString(phpString);
 ```
 
 ### With a PHP file
+
+Use `fs` or another file reading library to read the file, and pass that info into `fromString`, e.g.:
 ```js
 const phpArrayReader = require('php-array-reader');
 
 const phpFile = './file.php';
+const phpString = fs.readFileSync(phpFile, 'utf8');
+
 const data = phpArrayReader.fromFile(phpFile);
 ```
+
+> [!NOTE]
+> Version `1.x` of this library included a [`fromFile` method](https://github.com/bartvanraaij/php-array-reader/blob/a3f48acdef4eace2106ac40fa3c4593ab196dc1c/index.js#L6) 
+> that allowed you to read a file directly. This has been removed in version `2.x` forward.
+
 
 The PHP file can either return a single array, e.g.:
 ```php
@@ -115,11 +124,3 @@ This will return a JS object with the variable names as the first level keys:
   }
 }
 ```
-You can then of course also use destructuring to assign the results to two variables:
-```js
-const phpArrayReader = require('php-array-reader');
-
-const phpFile = './file.php';
-const { first, second } = phpArrayReader.fromFile(phpFile);
-```
-

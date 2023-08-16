@@ -1,12 +1,6 @@
-const phpParser = require('php-parser'),
-      fs = require('fs');
+const phpParser = require('php-parser');
 
 const readPhpArray = {
-
-  fromFile: function(file) {
-    const phpString = fs.readFileSync(file, 'utf8');
-    return readPhpArray.fromString(phpString);
-  },
 
   fromString: function(phpString){
 
