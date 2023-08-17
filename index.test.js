@@ -6,7 +6,7 @@ test('list', () => {
   ]`);
   expect(data).toEqual([
     'foo', 'bar', 'baz'
-  ])
+  ]);
 });
 
 test('dictionary', () => {
@@ -45,9 +45,16 @@ test('multiple', () => {
     $second = ['hello', 'world'];
   `);
   expect(data).toEqual({
-    first: ['foo','bar'],
-    second: ['hello' , 'world']
+    first: ['foo', 'bar'],
+    second: ['hello', 'world']
   });
+});
+
+test('php file', () => {
+  const data = fromString(`<?php
+    return ['foo', 'bar'];
+  `);
+  expect(data).toEqual(['foo', 'bar']);
 });
 
 test('all value types match (arrays strings numbers decimals nulls booleans)', () => {
@@ -63,12 +70,12 @@ test('all value types match (arrays strings numbers decimals nulls booleans)', (
     'falsevalue' => false,
   ]`);
   expect(data).toEqual({
-    arrayvalue: ['hello','world'],
+    arrayvalue: ['hello', 'world'],
     stringvalue: 'foo',
     numbervalue: 42,
     decimalvalue: 4.2,
     nullvalue: null,
     truevalue: true,
-    falsevalue: false,
+    falsevalue: false
   });
 });
