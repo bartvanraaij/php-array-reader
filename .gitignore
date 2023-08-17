@@ -43,8 +43,10 @@ build/Release
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
+# TypeScript declaration files
 typings/
+index.d.ts
+index.d.ts.map
 
 # Optional npm cache directory
 .npm
