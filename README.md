@@ -6,7 +6,7 @@ This small JS utility reads PHP strings containing arrays and returns a JavaScri
 
 It uses [glayzzle/php-parser](https://github.com/glayzzle/php-parser) to parse PHP into AST and uses that 
 info to extract arrays.  
-It supports both indexed and associative arrays and array, string, numeric and null values.
+It supports both indexed and associative arrays (i.e. lists and dictionaries/maps) and array, string, numeric and null values.
 
 ## Installation
 
@@ -23,16 +23,18 @@ import { fromString } from 'php-array-reader';
 
 const phpString = `[
   'key' => 'string',
-  'indexed_array' => [
+  'list' => [
     'first',
     'second'
   ],
-  'associative_array' => [
+  'dictionary' => [
     'foo' => 'bar',
     'hello' => 'world'
   ],
   'also_supports' => null,
-  'and_numeric' => 42
+  'and_numeric' => 42,
+  'what_about' => true,
+  'or' => false,
 ]`;
 const data = fromString(phpString); 
 ```
@@ -40,13 +42,15 @@ const data = fromString(phpString);
 ```js
 {
   key: 'string',
-  indexed_array: ['first', 'second'],
-  associative_array: {
+  list: ['first', 'second'],
+  dictionary: {
     foo: 'bar',
     hello: 'world'
   },
   also_supports: null,
-  and_numeric: 42
+  and_numeric: 42,
+  what_about: true,
+  or: false
 }
 ```
 
@@ -73,11 +77,11 @@ The PHP file can either return a single array, e.g.:
 <?php
 return [
    'key' => 'string',
-   'indexed_array' => [
+   'list' => [
      'first',
      'second'
    ],
-   'associative_array' => [
+   'dictionary' => [
      'foo' => 'bar',
      'hello' => 'world'
    ],
@@ -93,13 +97,13 @@ Or the PHP file may consist of multiple assigned arrays, e.g.:
 <?php
 $first = [
     'key' => 'string',
-    'associative_array' => [
+    'dictionary' => [
         'foo' => 'bar',
         'hello' => 'world'
     ]
 ];
 $second = [
-    'index_array' => [
+    'list' => [
         'first','second'
     ],
     'also_supports' => null,
@@ -112,13 +116,13 @@ This will return a JS object with the variable names as the first level keys:
 {
   first: {
     key: 'string',
-    associative_array: {
+    dictionary: {
       foo: 'bar', 
       hello: 'world'
     }
   },
   second: {
-    index_array: ['first', 'second'],
+    list: ['first', 'second'],
     also_supports: null,
     and_numeric: 42
   }
