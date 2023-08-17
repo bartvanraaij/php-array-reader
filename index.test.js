@@ -1,4 +1,4 @@
-const phpArrayReader = require('./index');
+const { fromString } = require('./index');
 
 const indexStr = `[
     'foo', 'bar', 'baz'
@@ -30,44 +30,23 @@ const multipleStr = `
   $second = ['hello', 'world'];
 `;
 
-test('indexed array from string', () => {
-
-  const data = phpArrayReader.fromString(indexStr);
+test('indexed array', () => {
+  const data = fromString(indexStr);
   expect(data).toEqual([
     'foo', 'bar', 'baz'
   ])
-
 });
 
-test('associative array from string', () => {
-
-  const data = phpArrayReader.fromString(associativeStr);
-
+test('associative array', () => {
+  const data = fromString(associativeStr);
   expect(data).toEqual({
     foo: 'bar',
     hello: 'world'
   });
-
 });
 
-test('all value types match (arrays strings numbers decimals nulls) from string', () => {
-
-  const data = phpArrayReader.fromString(valueTypesStr);
-
-  expect(data).toEqual({
-    arrayvalue: ['hello','world'],
-    stringvalue: 'foo',
-    numbervalue: 42,
-    decimalvalue: 4.2,
-    nullvalue: null
-  });
-
-});
-
-test('multidimensional array from string', () => {
-
-  const data = phpArrayReader.fromString(multidimensionalStr);
-
+test('multidimensional array', () => {
+  const data = fromString(multidimensionalStr);
   expect(data).toEqual({
     first: {
       second: {
@@ -76,16 +55,23 @@ test('multidimensional array from string', () => {
       fourth: 4
     }
   });
-
 });
 
-test('multiple arrays from file', () => {
-
-  const data = phpArrayReader.fromString(multipleStr);
-
+test('multiple arrays', () => {
+  const data = fromString(multipleStr);
   expect(data).toEqual({
     first: ['foo','bar'],
     second: ['hello' , 'world']
   });
+});
 
+test('all value types match (arrays strings numbers decimals nulls)', () => {
+  const data = fromString(valueTypesStr);
+  expect(data).toEqual({
+    arrayvalue: ['hello','world'],
+    stringvalue: 'foo',
+    numbervalue: 42,
+    decimalvalue: 4.2,
+    nullvalue: null
+  });
 });
