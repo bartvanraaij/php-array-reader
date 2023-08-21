@@ -57,7 +57,19 @@ test('php file', () => {
   expect(data).toEqual(['foo', 'bar']);
 });
 
-test('all value types match (arrays strings numbers decimals nulls booleans)', () => {
+test('function calls', () => {
+  const data = fromString(`[
+    'func' => env('SOME_VAR', true),
+    'another' => substr($var, 0, 5),
+    'arrow' => (fn() => 123),
+  ]`);
+  expect(data).toEqual({
+    func : "env('SOME_VAR', true)",
+    another: "substr($var, 0, 5)",
+  });
+})
+
+test('all value types match (arrays strings numbers decimals nulls booleans functions)', () => {
   const data = fromString(`[
     'arrayvalue' => [
       'hello', 'world'
@@ -68,6 +80,7 @@ test('all value types match (arrays strings numbers decimals nulls booleans)', (
     'nullvalue' => null,
     'truevalue' => true,
     'falsevalue' => false,
+    'functionvalue' => strtoupper('abc'),
   ]`);
   expect(data).toEqual({
     arrayvalue: ['hello', 'world'],
@@ -76,6 +89,8 @@ test('all value types match (arrays strings numbers decimals nulls booleans)', (
     decimalvalue: 4.2,
     nullvalue: null,
     truevalue: true,
-    falsevalue: false
+    falsevalue: false,
+    functionvalue: 'strtoupper(\'abc\')'
   });
 });
+

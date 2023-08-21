@@ -13,7 +13,10 @@ function fromString (phpString) {
       extractDoc: false,
       suppressErrors: true
     },
-    ast: { withPositions: false }
+    ast: {
+      withPositions: true,
+      withSource: true
+    }
   });
 
   phpString = phpString.trim();
@@ -72,6 +75,7 @@ function parseValue (expr) {
   if (expr.kind === 'boolean') return expr.value;
   if (expr.kind === 'nullkeyword') return null;
   if (expr.kind === 'identifier' && expr.name.name === 'null') return null;
+  if (expr.kind === 'call') return expr.loc?.source;
   return undefined;
 }
 
