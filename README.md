@@ -7,6 +7,7 @@ This small JS utility reads PHP strings containing arrays and returns a JavaScri
 It uses [glayzzle/php-parser](https://github.com/glayzzle/php-parser) to parse PHP into AST and uses that 
 info to extract arrays.  
 It supports both indexed and associative arrays (i.e. lists and dictionaries/maps) and array, string, numeric and null values.
+Inline function calls are not evaluated but returned as raw strings. See the example below.
 
 ## Installation
 
@@ -35,6 +36,7 @@ const phpString = `[
   'and_numeric' => 42,
   'what_about' => true,
   'or' => false,
+  'func' => strtoupper('abc'),
 ]`;
 const data = fromString(phpString); 
 ```
@@ -50,7 +52,8 @@ const data = fromString(phpString);
   also_supports: null,
   and_numeric: 42,
   what_about: true,
-  or: false
+  or: false,
+  func: "strtoupper('abc')"
 }
 ```
 
