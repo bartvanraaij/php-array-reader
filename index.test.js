@@ -79,3 +79,15 @@ test('all value types match (arrays strings numbers decimals nulls booleans)', (
     falsevalue: false
   });
 });
+
+test('raw data', () => {
+  const data = fromString(`[
+    'abc' => 'def',
+    'func' => env('SOME_VAR', true),
+  ]`);
+  expect(data).toEqual({
+    abc: 'def', 
+    func : "env('SOME_VAR', true)"
+  });
+})
+
