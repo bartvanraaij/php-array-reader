@@ -1,6 +1,6 @@
 {
   "name": "php-array-reader",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Reads PHP arrays from a string into a JavaScript object",
   "main": "index.js",
   "types": "index.d.ts",
