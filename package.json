@@ -4,13 +4,17 @@
   "description": "Reads PHP arrays from a string into a JavaScript object",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bartvanraaij/php-array-reader.git"
+    "url": "git+https://github.com/bartvanraaij/php-array-reader.git"
   },
   "keywords": [
     "php",
