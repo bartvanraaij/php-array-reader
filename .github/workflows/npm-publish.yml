@@ -7,6 +7,10 @@ on:
   release:
     types: [created]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
@@ -19,5 +23,3 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
