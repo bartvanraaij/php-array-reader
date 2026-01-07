@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bartvanraaij/php-array-reader.git"
+    "url": "git+https://github.com/bartvanraaij/php-array-reader.git"
   },
   "keywords": [
     "php",
